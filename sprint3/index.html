@@ -6,12 +6,22 @@
 <title>Sprint 3 · Seguretat i administració</title>
 <link rel="stylesheet" href="../css/estils.css">
 </head>
-<body>
+<body class="xp-desktop">
+
+<div class="desktop-icons" aria-label="Escriptori">
+  <a class="desktop-icon" href="../index.html">
+    <span class="desktop-icon-image">🏠</span>
+    <span>Portada</span>
+  </a>
+  <a class="desktop-icon" href="../sprints.html">
+    <span class="desktop-icon-image">📁</span>
+    <span>Índex de sprints</span>
+  </a>
+</div>
 
 <header class="hero">
   <nav class="hero-nav">
     <a href="../index.html">Portada</a>
-    <a href="../sprints.html">Índex de sprints</a>
     <a href="https://github.com/" target="_blank" rel="noopener">Codi a GitHub ↗</a>
   </nav>
   <div class="hero-titol">
@@ -79,6 +89,31 @@
   </p>
   <p class="autoria">Autor/a: <strong>Nom Cognom1 Cognom2</strong> · Pràctica 0 · Sistemes Operatius (ISOPJ1)</p>
 </footer>
+
+<script src="../js/windows.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.hero-nav, .hero-titol, .panell, .fitxa-alumne, .bloc-llicencia, .targeta, .consell, .apartat');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      elements.forEach((element) => element.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    elements.forEach((element) => observer.observe(element));
+  });
+</script>
 
 </body>
 </html>

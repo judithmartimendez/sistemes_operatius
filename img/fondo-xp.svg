@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1679d2"/>
+      <stop offset="0.55" stop-color="#55b5ed"/>
+      <stop offset="1" stop-color="#c9f0fa"/>
+    </linearGradient>
+    <linearGradient id="hillBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b8d85e"/>
+      <stop offset="1" stop-color="#5f9b36"/>
+    </linearGradient>
+    <linearGradient id="hillFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#83bd3f"/>
+      <stop offset="1" stop-color="#34782c"/>
+    </linearGradient>
+    <filter id="cloudBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <g fill="#fff" opacity="0.82" filter="url(#cloudBlur)">
+    <ellipse cx="250" cy="190" rx="170" ry="48"/>
+    <ellipse cx="390" cy="180" rx="135" ry="58"/>
+    <ellipse cx="505" cy="205" rx="180" ry="42"/>
+    <ellipse cx="1240" cy="255" rx="210" ry="48"/>
+    <ellipse cx="1390" cy="240" rx="145" ry="62"/>
+    <ellipse cx="1510" cy="270" rx="190" ry="42"/>
+  </g>
+  <path d="M0 620 C180 500 300 505 455 570 C620 640 720 570 850 505 C1000 430 1120 480 1260 575 C1390 665 1490 620 1600 555 L1600 900 L0 900 Z" fill="url(#hillBack)"/>
+  <path d="M0 720 C160 610 320 615 500 700 C690 790 790 655 950 600 C1110 545 1240 625 1370 710 C1470 775 1540 745 1600 690 L1600 900 L0 900 Z" fill="url(#hillFront)"/>
+  <path d="M0 806 C220 720 390 760 570 820 C760 885 900 750 1070 720 C1240 690 1360 815 1600 770 L1600 900 L0 900 Z" fill="#28672e" opacity="0.5"/>
+</svg>
