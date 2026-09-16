@@ -77,8 +77,10 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  body, .hero-nav, .hero-titol, .panell, .fitxa-alumne, .bloc-llicencia, .targeta, .consell, .apartat, .is-clicked { animation: none !important; transition: none !important; }
-  .hero-nav, .hero-titol, .panell, .fitxa-alumne, .bloc-llicencia, .targeta, .consell, .apartat { opacity: 1; transform: none; }
+  body, .hero-nav, .hero-titol, .panell, .fitxa-alumne, .bloc-llicencia, .targeta, .consell, .apartat, .is-clicked { 
+    animation: none !important; transition: none !important; }
+  .hero-nav, .hero-titol, .panell, .fitxa-alumne, .bloc-llicencia, .targeta, .consell, .apartat { opacity: 1; transform: none; 
+  }
 }
 
 a {
@@ -105,7 +107,7 @@ img {
 .hero {
   position: relative;
   background: linear-gradient(180deg, #1d1d1f 0%, #2d2d2f 100%);
-  padding-bottom: 78px;
+  padding-bottom: 7px;
   color: var(--panel);
   overflow: hidden;
 }
@@ -127,7 +129,7 @@ img {
   justify-content: center;
   gap: 12px;
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  padding: 20px 20px 0;
+  padding: 2px 2px 0;
 }
 
 .hero-nav a {
@@ -537,10 +539,11 @@ body.xp-desktop .root-window .resize-e { right: -7px; }
 
 body.xp-desktop .hero {
   cursor: grab;
-  height: 144px;
-  min-height: 144px;
+  height: auto ;
+  min-height: 16px;
+  max-height: 50px;
   overflow: visible;
-  padding-bottom: 12px;
+  padding-top: 12px;
   background: linear-gradient(180deg, #3d9bea 0%, #1267b4 48%, #07529b 100%);
   border: 0;
   border-radius: 9px 9px 0 0;
@@ -593,12 +596,13 @@ body.xp-desktop .hero-titol {
 
 body.xp-desktop .hero-titol h1 {
   position: absolute;
-  top: 5px;
-  left: 10px;
+  top: 0.5rem;
+  left: 0.5rem;
   right: 92px;
   margin: 0;
   font-size: clamp(1.45rem, 3vw, 2.15rem);
-  line-height: 22px;
+  line-height: auto;
+  min-height: 2rem;
   letter-spacing: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1148,9 +1152,9 @@ body.xp-desktop .floating-window {
   }
 
   body.xp-desktop .hero-titol h1 {
-    top: 8px;
+    top: 15px;
     right: 116px;
-    font-size: 1.05rem;
+    font-size: 1.5rem;
     line-height: 22px;
   }
 
@@ -1166,7 +1170,8 @@ body.xp-desktop .floating-window {
 
   body.xp-desktop .hero {
     height: auto;
-    min-height: 116px;
+    min-height: 16px;
+    max-height: 50px;
   }
 
   body.xp-desktop .hero,
