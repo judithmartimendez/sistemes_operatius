@@ -67,6 +67,99 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
   body.append(selectionBox);
 
   const desktopIcons = () => [...document.querySelectorAll('.desktop-icon')];
+
+  // Els accessos directes comencen alineats a l'esquerra, però es poden
+  // reposicionar com en un escriptori. No es desa la posició: en recarregar
+  // la pàgina tornen a la columna inicial.
+  const enableDesktopIconDragging = () => {
+    desktopIcons().forEach((icon) => {
+      let dragging = false;
+      let moved = false;
+      let startX = 0;
+      let startY = 0;
+      let originX = 0;
+      let originY = 0;
+
+      icon.addEventListener('pointerdown', (event) => {
+        if (event.button !== 0) return;
+
+        const rect = icon.getBoundingClientRect();
+        icon.style.position = 'fixed';
+        icon.style.left = `${rect.left}px`;
+        icon.style.top = `${rect.top}px`;
+        icon.style.width = `${rect.width}px`;
+        // Los iconos pertenecen al escritorio: nunca deben cubrir una ventana.
+        icon.style.zIndex = '1';
+        dragging = true;
+        moved = false;
+        startX = event.clientX;
+        startY = event.clientY;
+        originX = rect.left;
+        originY = rect.top;
+        icon.classList.add('is-dragging');
+        icon.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      icon.addEventListener('pointermove', (event) => {
+        if (!dragging) return;
+
+        const deltaX = event.clientX - startX;
+        const deltaY = event.clientY - startY;
+        if (Math.abs(deltaX) > 4 || Math.abs(deltaY) > 4) moved = true;
+
+        // La columna de iconos queda reservada a la izquierda de las ventanas.
+        const isMobile = window.matchMedia('(max-width: 700px)').matches;
+        const maxX = Math.max(0, isMobile
+          ? window.innerWidth - icon.offsetWidth
+          : Math.min(145, window.innerWidth - icon.offsetWidth));
+        const desktopBottom = isMobile
+          ? rootWindow.getBoundingClientRect().top - 10
+          : window.innerHeight - 52;
+        const maxY = Math.max(0, desktopBottom - icon.offsetHeight);
+        const nextLeft = Math.min(maxX, Math.max(0, originX + deltaX));
+        const nextTop = Math.min(maxY, Math.max(0, originY + deltaY));
+        const nextRect = {
+          left: nextLeft,
+          top: nextTop,
+          right: nextLeft + icon.offsetWidth,
+          bottom: nextTop + icon.offsetHeight
+        };
+        const collides = desktopIcons()
+          .filter((otherIcon) => otherIcon !== icon)
+          .some((otherIcon) => {
+            const otherRect = otherIcon.getBoundingClientRect();
+            return nextRect.left < otherRect.right
+              && nextRect.right > otherRect.left
+              && nextRect.top < otherRect.bottom
+              && nextRect.bottom > otherRect.top;
+          });
+
+        if (!collides) {
+          icon.style.left = `${nextLeft}px`;
+          icon.style.top = `${nextTop}px`;
+        }
+      });
+
+      icon.addEventListener('pointerup', (event) => {
+        if (!dragging) return;
+        dragging = false;
+        icon.classList.remove('is-dragging');
+        icon.releasePointerCapture(event.pointerId);
+        if (moved) {
+          icon.dataset.suppressClick = 'true';
+          window.setTimeout(() => delete icon.dataset.suppressClick, 0);
+        }
+      });
+
+      icon.addEventListener('click', (event) => {
+        if (icon.dataset.suppressClick !== 'true') return;
+        event.preventDefault();
+      });
+    });
+  };
+
+  enableDesktopIconDragging();
   let selecting = false;
   let selectionStartX = 0;
   let selectionStartY = 0;
@@ -147,6 +240,7 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
 
     bar.addEventListener('pointerdown', (event) => {
       if (event.target.closest('a, button, .resize-handle')) return;
+      if (window.matchMedia('(max-width: 700px)').matches) return;
       dragging = true;
       startX = event.clientX;
       startY = event.clientY;
@@ -256,6 +350,7 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
     rootWindow.addEventListener('pointerdown', (event) => {
       const handle = event.target.closest('.resize-handle');
       if (!handle) return;
+      if (window.matchMedia('(max-width: 700px)').matches) return;
       event.preventDefault();
       event.stopPropagation();
 
@@ -292,7 +387,11 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
         }
 
         rootWindow.style.marginLeft = `${left}px`;
-        rootWindow.style.top = `${top}px`;
+        // La posición vertical se guarda en la misma traslación que usa el
+        // arrastre. De ese modo, después de redimensionar desde arriba la
+        // ventana se puede volver a llevar hasta el borde superior.
+        rootWindow.style.top = '0px';
+        rootWindow.style.setProperty('--window-y', `${top}px`);
         rootWindow.style.width = `${Math.min(width, window.innerWidth - left)}px`;
         rootWindow.style.height = `${Math.min(height, window.innerHeight - 44 - top)}px`;
       };
@@ -308,6 +407,26 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
   };
 
   addRootResize();
+
+  const resetRootWindowForMobile = () => {
+    if (!window.matchMedia('(max-width: 700px)').matches) return;
+    rootWindow.style.removeProperty('margin-left');
+    rootWindow.style.removeProperty('top');
+    rootWindow.style.removeProperty('width');
+    rootWindow.style.removeProperty('height');
+    rootWindow.style.removeProperty('max-width');
+    rootWindow.style.setProperty('--window-x', '0px');
+    rootWindow.style.setProperty('--window-y', '0px');
+    window.requestAnimationFrame(() => {
+      if (!window.matchMedia('(max-width: 700px)').matches) return;
+      const rootTop = rootWindow.getBoundingClientRect().top;
+      const taskbarHeight = footer.getBoundingClientRect().height;
+      rootWindow.style.height = `${Math.max(0, window.innerHeight - taskbarHeight - rootTop)}px`;
+    });
+  };
+
+  resetRootWindowForMobile();
+  window.addEventListener('resize', resetRootWindowForMobile);
 
   controls.addEventListener('click', (event) => {
     const action = event.target.closest('[data-window-action]')?.dataset.windowAction;
