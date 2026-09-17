@@ -50,6 +50,14 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
   clock.className = 'taskbar-clock';
   footer.append(taskbarStart, taskbarApps, taskbarWindow, clock, legacyContent);
 
+  // La barra de tasques és inamovible: les finestres maximitzades han
+  // d'ocupar tota la pantalla menys aquesta alçada.
+  const updateTaskbarHeight = () => {
+    document.documentElement.style.setProperty('--taskbar-height', `${footer.getBoundingClientRect().height}px`);
+  };
+  updateTaskbarHeight();
+  window.addEventListener('resize', updateTaskbarHeight);
+
   const menu = document.createElement('div');
   menu.className = 'start-menu';
   menu.hidden = true;
@@ -450,7 +458,13 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
       taskbarWindow.classList.remove('is-active');
     }
     if (action === 'maximize') {
-      body.classList.toggle('window-maximized');
+      const maximized = body.classList.toggle('window-maximized');
+      if (maximized) {
+        // Esborra els estils en línia deixats per l'arrossegament o el
+        // redimensionament perquè la finestra ocupi tota la pantalla.
+        ['margin-left', 'top', 'left', 'right', 'width', 'height', 'max-width', 'transform']
+          .forEach((prop) => rootWindow.style.removeProperty(prop));
+      }
       body.style.setProperty('--window-x', '0px');
       body.style.setProperty('--window-y', '0px');
     }
@@ -565,7 +579,15 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
         windowElement.classList.add('is-minimized');
         taskbarButton.classList.remove('is-active');
       }
-      if (action === 'maximize') windowElement.classList.toggle('is-maximized');
+      if (action === 'maximize') {
+        const maximized = windowElement.classList.toggle('is-maximized');
+        if (maximized) {
+          ['left', 'top', 'width', 'height', 'transform']
+            .forEach((prop) => windowElement.style.removeProperty(prop));
+          windowElement.style.setProperty('--drag-x', '0px');
+          windowElement.style.setProperty('--drag-y', '0px');
+        }
+      }
       if (action === 'close') {
         windowElement.remove();
         taskbarButton.remove();

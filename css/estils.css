@@ -775,7 +775,7 @@ body.xp-desktop.window-maximized .root-window {
   top: 0;
   left: 0;
   width: 100vw;
-  height: calc(100vh - 44px);
+  height: calc(100vh - var(--taskbar-height, 44px));
   max-width: none;
   margin: 0;
   transform: none;
@@ -931,7 +931,7 @@ body.xp-desktop .floating-window.is-maximized {
   top: 0;
   left: 0;
   width: 100vw;
-  height: calc(100vh - 44px);
+  height: calc(100vh - var(--taskbar-height, 44px));
   transform: none;
 }
 
