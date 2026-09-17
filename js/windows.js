@@ -79,17 +79,28 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
       let startY = 0;
       let originX = 0;
       let originY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let baseLeft = 0;
+      let baseTop = 0;
+
+      const applyTranslate = (x, y) => {
+        currentX = x;
+        currentY = y;
+        icon.style.transform = `translate(${x}px, ${y}px)`;
+      };
 
       icon.addEventListener('pointerdown', (event) => {
         if (event.button !== 0) return;
 
         const rect = icon.getBoundingClientRect();
-        icon.style.position = 'fixed';
-        icon.style.left = `${rect.left}px`;
-        icon.style.top = `${rect.top}px`;
-        icon.style.width = `${rect.width}px`;
+        // Mantenim l'icona dins la graella amb transform (no position: fixed)
+        // perquè els altres accessos no es moguin ni se solapin amb ell.
+        baseLeft = rect.left - currentX;
+        baseTop = rect.top - currentY;
+        icon.style.position = 'relative';
         // Los iconos pertenecen al escritorio: nunca deben cubrir una ventana.
-        icon.style.zIndex = '1';
+        icon.style.zIndex = '2';
         dragging = true;
         moved = false;
         startX = event.clientX;
@@ -119,34 +130,37 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
         const maxY = Math.max(0, desktopBottom - icon.offsetHeight);
         const nextLeft = Math.min(maxX, Math.max(0, originX + deltaX));
         const nextTop = Math.min(maxY, Math.max(0, originY + deltaY));
-        const nextRect = {
-          left: nextLeft,
-          top: nextTop,
-          right: nextLeft + icon.offsetWidth,
-          bottom: nextTop + icon.offsetHeight
-        };
-        const collides = desktopIcons()
-          .filter((otherIcon) => otherIcon !== icon)
-          .some((otherIcon) => {
-            const otherRect = otherIcon.getBoundingClientRect();
-            return nextRect.left < otherRect.right
-              && nextRect.right > otherRect.left
-              && nextRect.top < otherRect.bottom
-              && nextRect.bottom > otherRect.top;
-          });
 
-        if (!collides) {
-          icon.style.left = `${nextLeft}px`;
-          icon.style.top = `${nextTop}px`;
-        }
+        // Mentre s'arrossega es mou lliurement; les col·lisions es
+        // comproven en deixar-lo anar.
+        applyTranslate(nextLeft - baseLeft, nextTop - baseTop);
       });
 
       icon.addEventListener('pointerup', (event) => {
         if (!dragging) return;
         dragging = false;
         icon.classList.remove('is-dragging');
+        icon.style.position = '';
+        icon.style.zIndex = '';
         icon.releasePointerCapture(event.pointerId);
+
         if (moved) {
+          const rect = icon.getBoundingClientRect();
+          const overlaps = desktopIcons()
+            .filter((otherIcon) => otherIcon !== icon)
+            .some((otherIcon) => {
+              const otherRect = otherIcon.getBoundingClientRect();
+              return rect.left < otherRect.right
+                && rect.right > otherRect.left
+                && rect.top < otherRect.bottom
+                && rect.bottom > otherRect.top;
+            });
+
+          if (overlaps) {
+            // En deixar-lo anar damunt d'un altre accés, torna on era.
+            applyTranslate(originX - baseLeft, originY - baseTop);
+          }
+
           icon.dataset.suppressClick = 'true';
           window.setTimeout(() => delete icon.dataset.suppressClick, 0);
         }
