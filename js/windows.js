@@ -61,10 +61,14 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
   const menu = document.createElement('div');
   menu.className = 'start-menu';
   menu.hidden = true;
+  const homeRoot = body.classList.contains('xp-sprint') ? '../../'
+    : body.classList.contains('xp-sprints') ? '../' : '';
+  const sprintsRoot = body.classList.contains('xp-sprint') ? '../../sprints/'
+    : body.classList.contains('xp-sprints') ? '' : 'sprints/';
   menu.innerHTML = `
     <div class="start-menu-title">Sistemes Operatius</div>
-    <a href="${body.classList.contains('xp-root') ? 'index.html' : '../index.html'}">🏠 Portada</a>
-    <a href="${body.classList.contains('xp-root') ? 'sprints.html' : '../sprints.html'}">📁 Índex de sprints</a>
+    <a href="${homeRoot}index.html">🏠 Portada</a>
+    <a href="${sprintsRoot}index.html">📁 Índex de sprints</a>
     <a href="https://github.com/judithmartimendez/sistemes_operatius" target="_blank" rel="noopener">💻 Codi a GitHub</a>
   `;
   body.append(menu);
@@ -358,7 +362,7 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
     });
   };
 
-  addDrag(rootWindow, rootWindow);
+  addDrag(hero, rootWindow);
 
   const addRootResize = () => {
     ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'].forEach((direction) => {
@@ -489,17 +493,38 @@ if (window.self === window.top) document.addEventListener('DOMContentLoaded', ()
       const frameDocument = frame.contentDocument;
       if (!frameDocument) return;
 
-      const pageTitle = frameDocument.title.replace(' - Portada', '').replace('Sprint ', 'Sprint ');
+      let pageTitle = frameDocument.title.replace(' - Portada', '').replace('Sprint ', 'Sprint ');
+      if (!pageTitle) {
+        // Si la pàgina no té títol, fem servir el nom del fitxer.
+        const path = frame.src.split('?')[0].split('#')[0];
+        pageTitle = decodeURIComponent(path.split('/').pop()) || 'Finestra';
+      }
       titlebar.querySelector('.floating-window-title').textContent = pageTitle || 'Finestra';
       taskbarButton.textContent = pageTitle || 'Finestra';
 
       const cleanStyle = frameDocument.createElement('style');
       cleanStyle.textContent = `
-        html, body { width: 100% !important; height: 100% !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; background: #fff !important; user-select: none !important; }
+        html, body { width: 100% !important; height: 100% !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; background: #ece9d8 !important; user-select: none !important; font-family: Tahoma, "Trebuchet MS", sans-serif !important; }
         .desktop-icons, .hero, footer, script { display: none !important; }
-        main { width: 100% !important; height: 100% !important; max-width: none !important; max-height: 100% !important; margin: 0 !important; padding: 0 !important; overflow: auto !important; transform: none !important; background: #fff !important; }
-        .panell { min-height: 100% !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; padding: 22px !important; opacity: 1 !important; transform: none !important; }
+        main { width: 100% !important; height: 100% !important; max-width: none !important; max-height: 100% !important; margin: 0 !important; padding: 0 !important; overflow: auto !important; transform: none !important; background: #ece9d8 !important; }
+        .panell { min-height: calc(100% - 16px) !important; margin: 8px !important; border: 1px solid #919b9c !important; border-radius: 0 !important; box-shadow: 2px 2px 0 rgba(0, 38, 82, 0.12) !important; padding: 22px !important; opacity: 1 !important; transform: none !important; background: #fff !important; }
         .apartat, .targeta, .consell, .fitxa-alumne, .bloc-llicencia { opacity: 1 !important; transform: none !important; }
+        h1, h2, h3 { font-family: Tahoma, "Trebuchet MS", sans-serif !important; letter-spacing: 0 !important; }
+        .panell h2, .panell h3, .apartat h2, .targeta h3 { color: #0a246a !important; }
+        a { color: #0000cc !important; }
+        code { font-family: "Courier New", Consolas, monospace !important; background: #f2f5fa !important; border: 1px solid #c8d4e8 !important; color: #0a3d8f !important; padding: 1px 5px !important; border-radius: 2px !important; }
+        .taula-apartats { border: 1px solid #919b9c !important; background: #fff !important; }
+        .taula-apartats th { background: linear-gradient(180deg, #f4f8ff 0%, #cfe0f5 48%, #b6cdec 52%, #d8e7f9 100%) !important; color: #0a246a !important; border-bottom: 1px solid #919b9c !important; }
+        .taula-apartats tr:hover td { background: #e8f0fe !important; }
+        pre { box-sizing: border-box !important; margin: 8px !important; padding: 14px 16px !important; height: calc(100% - 16px) !important; overflow: auto !important; font-family: "Courier New", Consolas, monospace !important; font-size: 0.85rem !important; line-height: 1.5 !important; color: #1a1a1a !important; background: #fff !important; border: 1px solid #919b9c !important; border-radius: 0 !important; box-shadow: 2px 2px 0 rgba(0, 38, 82, 0.12) !important; white-space: pre-wrap !important; }
+        main::-webkit-scrollbar { width: 16px !important; height: 16px !important; }
+        main::-webkit-scrollbar-track { background: #ece9d8 !important; }
+        main::-webkit-scrollbar-thumb { background: #c9d3e6 !important; border: 1px solid #8b9ac0 !important; }
+        main::-webkit-scrollbar-thumb:hover { background: #a8bbdd !important; }
+        pre::-webkit-scrollbar { width: 16px !important; height: 16px !important; }
+        pre::-webkit-scrollbar-track { background: #ece9d8 !important; }
+        pre::-webkit-scrollbar-thumb { background: #c9d3e6 !important; border: 1px solid #8b9ac0 !important; }
+        pre::-webkit-scrollbar-thumb:hover { background: #a8bbdd !important; }
       `;
       frameDocument.head.append(cleanStyle);
       frame.style.visibility = 'visible';

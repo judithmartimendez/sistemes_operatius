@@ -3,26 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sprint 2 · Gestió de programari i usuaris</title>
-<link rel="stylesheet" href="../css/estils.css">
+<title>Sprint 3 · Seguretat i administració</title>
+<link rel="stylesheet" href="../../css/estils.css">
 </head>
-<body class="xp-desktop">
+<body class="xp-desktop xp-sprint">
 
 <div class="desktop-icons" aria-label="Escriptori">
-  <a class="desktop-icon" href="../index.html">
+  <a class="desktop-icon" href="../../index.html">
     <span class="desktop-icon-image">🏠</span>
     <span>Portada</span>
   </a>
-  <a class="desktop-icon" href="../sprints.html">
+  <a class="desktop-icon" href="../index.html">
     <span class="desktop-icon-image">📁</span>
     <span>Índex de sprints</span>
+  </a>
+  <a class="desktop-icon" href="../../llicència.html">
+    <span class="desktop-icon-image">📄</span>
+    <span>llicència.txt</span>
   </a>
 </div>
 
 <header class="hero">
   <div class="hero-titol">
-    <p class="miguetes"><a href="../index.html">Portada</a> / <a href="../sprints.html">Índex de sprints</a> / Sprint 2</p>
-    <h1>Sprint 2 · Gestió de programari i usuaris</h1>
+    <p class="miguetes"><a href="../../index.html">Portada</a> / <a href="../index.html">Índex de sprints</a> / Sprint 3</p>
+    <h1>Sprint 3 · Seguretat i administració</h1>
     <p class="subtitol">Índex d'apartats d'aquest sprint</p>
   </div>
 </header>
@@ -35,33 +39,42 @@
         <tr><th>#</th><th>Apartat</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td><a href="#apartat1">Gestors de paquets</a></td></tr>
-        <tr><td>2</td><td><a href="#apartat2">Permisos i propietaris d'arxius</a></td></tr>
+        <tr><td>1</td><td><a href="#apartat1">Tallafocs i control d'accés</a></td></tr>
+        <tr><td>2</td><td><a href="#apartat2">Còpies de seguretat</a></td></tr>
+        <tr><td>3</td><td><a href="#apartat3">Monitorització del sistema</a></td></tr>
       </tbody>
     </table>
 
     <article class="apartat" id="apartat1">
-      <h2>1. Gestors de paquets</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-         tempor incididunt ut labore et dolore magna aliqua. El gestor de
-         paquets permet <strong>instal·lar, actualitzar i eliminar</strong>
-         programari de manera controlada.</p>
+      <h2>1. Tallafocs i control d'accés</h2>
+      <p>Lorem ipsum dolor, consectetur adipiscing elit. Un
+         <strong>tallafocs</strong> ben configurat només obre els ports que
+         realment es fan servir.</p>
       <ul>
-        <li>Actualitzar la llista de paquets disponibles.</li>
-        <li>Instal·lar un paquet nou.</li>
-        <li>Eliminar un paquet que ja no es fa servir.</li>
+        <li>Consultar les regles actives.</li>
+        <li>Obrir només els ports necessaris.</li>
+        <li>Bloquejar la resta de trànsit entrant.</li>
       </ul>
       <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
     </article>
     <article class="apartat" id="apartat2">
-      <h2>2. Permisos i propietaris d'arxius</h2>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-         ut aliquip ex ea commodo consequat. Cada arxiu té un
-         <strong>propietari, un grup i uns permisos</strong> que en determinen
-         l'accés.</p>
-      <img src="../img/exemple.svg" alt="Exemple de captura de pantalla dels permisos d'un arxiu">
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-         dolore eu fugiat nulla pariatur.</p>
+      <h2>2. Còpies de seguretat</h2>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Una
+         política de <strong>còpies de seguretat</strong> periòdiques evita
+         perdre informació important.</p>
+      <img src="../../img/exemple.svg" alt="Exemple de captura de pantalla d'una còpia de seguretat">
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+    <article class="apartat" id="apartat3">
+      <h2>3. Monitorització del sistema</h2>
+      <p>Lorem ipsum, Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+         nisi ut aliquip ex ea commodo consequat. Monitoritzar l'ús de
+         <strong>CPU, memòria i disc</strong> ajuda a detectar problemes abans
+         que afectin el servei.</p>
+      <ul>
+        <li>Revisar l'ús de recursos amb eines del sistema.</li>
+        <li>Configurar alertes davant valors anormals.</li>
+      </ul>
       <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
     </article>
   </section>
@@ -77,7 +90,7 @@
   <p class="autoria">Autor/a: <strong>Nom Cognom1 Cognom2</strong> · Pràctica 0 · Sistemes Operatius (ISOPJ1)</p>
 </footer>
 
-<script src="../js/windows.js"></script>
+<script src="../../js/windows.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {

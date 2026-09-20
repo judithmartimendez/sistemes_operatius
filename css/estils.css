@@ -786,8 +786,9 @@ body.xp-desktop.window-maximized .root-window > .hero {
   top: auto;
   left: auto;
   width: 100%;
-  height: 144px;
-  min-height: 144px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
   z-index: 2;
 }
 
@@ -796,7 +797,7 @@ body.xp-desktop.window-maximized .root-window > main.contenidor {
   top: auto;
   left: auto;
   width: 100%;
-  height: calc(100% - 144px);
+  height: calc(100% - 50px);
   min-height: 0;
   margin: 0;
   overflow: auto;
@@ -1114,6 +1115,98 @@ body.xp-desktop .floating-window {
   user-select: none;
 }
 
+/* ---------- Interior de finestra: estil Windows XP ---------- */
+body.xp-desktop main.contenidor {
+  background: #ece9d8;
+}
+
+body.xp-desktop .panell {
+  background: #fff;
+}
+
+body.xp-desktop .panell h2,
+body.xp-desktop .panell h3,
+body.xp-desktop .apartat h2,
+body.xp-desktop .targeta h3 {
+  font-family: Tahoma, "Trebuchet MS", sans-serif;
+  letter-spacing: 0;
+  color: #0a246a;
+}
+
+body.xp-desktop .panell a,
+body.xp-desktop .apartat a,
+body.xp-desktop .consell a {
+  color: #0000cc;
+}
+
+body.xp-desktop .panell a:hover,
+body.xp-desktop .apartat a:hover,
+body.xp-desktop .consell a:hover {
+  color: #0000cc;
+  text-decoration: underline;
+}
+
+body.xp-desktop code {
+  font-family: "Courier New", Consolas, monospace;
+  background: #f2f5fa;
+  border: 1px solid #c8d4e8;
+  color: #0a3d8f;
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+body.xp-desktop .taula-apartats {
+  border: 1px solid #919b9c;
+  background: #fff;
+}
+
+body.xp-desktop .taula-apartats th {
+  background: linear-gradient(180deg, #f4f8ff 0%, #cfe0f5 48%, #b6cdec 52%, #d8e7f9 100%);
+  color: #0a246a;
+  border-bottom: 1px solid #919b9c;
+  border-right: 1px solid #c0c0c0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.8rem;
+}
+
+body.xp-desktop .taula-apartats td {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+body.xp-desktop .taula-apartats tr:hover td {
+  background: #e8f0fe;
+}
+
+body.xp-desktop .boto:hover {
+  border-color: #f8a14d;
+}
+
+body.xp-desktop .apartat img {
+  border-radius: 0;
+  border: 1px solid #919b9c;
+  box-shadow: 2px 2px 0 rgba(0, 38, 82, 0.15);
+}
+
+/* Barres de desplaçament tipus XP per a la finestra principal */
+body.xp-desktop main.contenidor::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+body.xp-desktop main.contenidor::-webkit-scrollbar-track {
+  background: #ece9d8;
+}
+
+body.xp-desktop main.contenidor::-webkit-scrollbar-thumb {
+  background: #c9d3e6;
+  border: 1px solid #8b9ac0;
+}
+
+body.xp-desktop main.contenidor::-webkit-scrollbar-thumb:hover {
+  background: #a8bbdd;
+}
+
 @media (max-width: 700px) {
   body.xp-desktop {
     padding: 12px 10px 62px;
@@ -1139,21 +1232,23 @@ body.xp-desktop .floating-window {
   }
 
   body.xp-desktop .window-controls {
-    top: 7px;
-    right: 8px;
-    gap: 3px;
+    top: 6px;
+    right: 6px;
+    gap: 2px;
+    max-width: calc(100% - 12px);
   }
 
   body.xp-desktop .window-controls button {
-    width: 32px;
-    height: 30px;
-    font-size: 1.15rem;
-    line-height: 26px;
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    line-height: 20px;
   }
 
   body.xp-desktop .hero-titol h1 {
     top: 15px;
-    right: 116px;
+    right: 90px;
     font-size: 1.5rem;
     line-height: 22px;
   }

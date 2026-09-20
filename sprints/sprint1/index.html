@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint 1 · Instal·lació i configuració inicial</title>
+<link rel="stylesheet" href="../../css/estils.css">
+</head>
+<body class="xp-desktop xp-sprint">
+
+<div class="desktop-icons" aria-label="Escriptori">
+  <a class="desktop-icon" href="../../index.html">
+    <span class="desktop-icon-image">🏠</span>
+    <span>Portada</span>
+  </a>
+  <a class="desktop-icon" href="../index.html">
+    <span class="desktop-icon-image">📁</span>
+    <span>Índex de sprints</span>
+  </a>
+  <a class="desktop-icon" href="../../llicència.html">
+    <span class="desktop-icon-image">📄</span>
+    <span>llicència.txt</span>
+  </a>
+</div>
+
+<header class="hero">
+  <div class="hero-titol">
+    <p class="miguetes"><a href="../../index.html">Portada</a> / <a href="../index.html">Índex de sprints</a> / Sprint 1</p>
+    <h1>Sprint 1 · Instal·lació i configuració inicial</h1>
+    <p class="subtitol">Índex d'apartats d'aquest sprint</p>
+  </div>
+</header>
+
+<main class="contenidor">
+  <section class="panell">
+    <a id="index-apartats"></a>
+    <table class="taula-apartats">
+      <thead>
+        <tr><th>#</th><th>Apartat</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><a href="#apartat1">Virtualització</a></td></tr>
+        <tr><td>2</td><td><a href="#apartat2">Instal·lació del sistema operatiu</a></td></tr>
+        <tr><td>3</td><td><a href="#apartat3">Punts de restauració</a></td></tr>
+        <tr><td>4</td><td><a href="#apartat4">Llicències</a></td></tr>
+        <tr><td>5</td><td><a href="#apartat5">Gestors d'arrencada</a></td></tr>
+        <tr><td>6</td><td><a href="#apartat6">Xarxa Bàsica</a></td></tr>
+        <tr><td>7</td><td><a href="#apartat7">Comandes Generals</a></td></tr>
+        <tr><td>8</td><td><a href="#apartat8">Instal·lacions aplicacions</a></td></tr>
+      </tbody>
+    </table>
+
+    <article class="apartat" id="apartat1">
+      <h2>1. Virtualització</h2>
+      <p>La <strong>virtualització</strong> és la tècnica que permet executar
+         un o més ordinadors "virtuals" (màquines virtuals o VM) dins d'un
+         mateix ordinador físic (l'amfitrió), compartint-ne el maquinari real
+         (CPU, RAM, disc, xarxa) de forma aïllada i segura. Un programari
+         anomenat <em>hipervisor</em> —en aquest cas <strong>Oracle VM VirtualBox</strong>—
+         s'encarrega de crear i gestionar aquestes màquines virtuals.</p>
+      <ul>
+        <li>Permet provar sistemes operatius nous sense arriscar el sistema real.</li>
+        <li>Es poden desfer errors fàcilment (snapshots) sense afectar l'amfitrió.</li>
+        <li>Diverses VM poden conviure al mateix ordinador amb recursos assignats de forma independent.</li>
+      </ul>
+      <p>És per aquest motiu que tot el sprint s'ha fet dins d'una màquina
+         virtual de VirtualBox: a continuació es detalla tot el procés de
+         creació de la VM, pas a pas i amb captures de pantalla.</p>
+
+      <h3>1.1. Creació de la màquina virtual</h3>
+      <ul>
+        <li>Des del VirtualBox Manager es prem el botó <strong>Nova</strong> per iniciar l'assistent de creació.</li>
+        <li>Es dona nom a la màquina (<code>ubuntu-particions</code>) i es selecciona la imatge ISO <code>ubuntu-26.04.1-desktop-amd64.iso</code>.</li>
+        <li>En la pantalla d'instal·lació desatesa es defineixen l'usuari, la contrasenya i el nom d'amfitrió que proposa VirtualBox per defecte.</li>
+        <li>S'assignen els recursos de maquinari: <strong>4096 MB de RAM</strong> i <strong>2 CPUs</strong>.</li>
+        <li>Es crea un disc dur virtual nou de <strong>80 GB</strong>.</li>
+        <li>Es confirma el resum i es finalitza l'assistent, quedant la màquina creada a la llista.</li>
+      </ul>
+      <img src="img-virt/1.png" alt="VirtualBox Manager amb el botó Nova per crear una màquina virtual">
+      <img src="img-virt/2.png" alt="Assistent de creació: nom de la màquina i selecció de la imatge ISO d'Ubuntu 26.04.1">
+      <img src="img-virt/3.png" alt="Configuració de la instal·lació desatesa: usuari, contrasenya i nom d'amfitrió">
+      <img src="img-virt/4.png" alt="Configuració del maquinari: memòria base i nombre de processadors">
+      <img src="img-virt/5.png" alt="Creació del disc dur virtual de 80 GB">
+      <img src="img-virt/6.png" alt="Resum final i màquina virtual ja creada al VirtualBox Manager">
+
+      <h3>1.2. Ajust dels paràmetres i arrencada</h3>
+      <p>Abans d'engegar-la es revisen alguns paràmetres addicionals de la
+         màquina, com la targeta de xarxa (en mode <strong>NAT</strong>) i la
+         memòria de vídeo assignada a la pantalla.</p>
+      <img src="img-virt/7.png" alt="Paràmetres de xarxa de la màquina virtual amb l'adaptador en mode NAT">
+      <img src="img-virt/8.png" alt="Paràmetres de pantalla amb la memòria de vídeo assignada">
+      <img src="img-virt/9.png" alt="Inici de la màquina virtual prement el botó Inicia">
+      <p>Amb la màquina virtual ja creada i arrencada des de l'ISO, a l'apartat
+         següent es detalla la instal·lació del sistema operatiu pròpiament
+         dita.</p>
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+    <article class="apartat" id="apartat2">
+      <h2>2. Instal·lació del sistema operatiu</h2>
+      <p>Un cop creada i arrencada la màquina virtual amb l'ISO d'
+         <strong>Ubuntu 26.04.1 LTS</strong>, es continua amb la instal·lació
+         pas a pas del sistema operatiu, amb un particionat manual del disc
+         en lloc de l'opció automàtica.</p>
+
+      <h3>2.1. Configuració inicial de l'instal·lador</h3>
+      <ul>
+        <li>Es revisen les opcions d'accessibilitat de l'instal·lador.</li>
+        <li>Es tria la distribució de teclat (espanyol).</li>
+        <li>Es configura la connexió de xarxa, que en aquest cas ja queda establerta automàticament per NAT.</li>
+        <li>Es tria el tipus d'instal·lació <strong>Interactiva</strong>, pensada per seguir l'assistent pas a pas.</li>
+        <li>Es marca l'opció <strong>Instal·la el sistema Ubuntu</strong> (en lloc de només provar-lo).</li>
+      </ul>
+      <img src="img-virt/10.png" alt="Arrencada de l'instal·lador d'Ubuntu amb l'idioma català seleccionat">
+      <img src="img-virt/11.png" alt="Pantalla d'accessibilitat de l'instal·lador d'Ubuntu">
+      <img src="img-virt/12.png" alt="Selecció de la distribució de teclat">
+      <img src="img-virt/13.png" alt="Configuració de la connexió de xarxa durant la instal·lació">
+      <img src="img-virt/15.png" alt="Selecció del tipus d'instal·lació: Interactiva">
+      <img src="img-virt/14.png" alt="Selecció de l'opció Instal·la el sistema Ubuntu">
+
+      <h3>2.2. Aplicacions i programari addicional</h3>
+      <ul>
+        <li>Es tria la <strong>Selecció predeterminada</strong> d'aplicacions (només l'imprescindible i el navegador).</li>
+        <li>S'activa la instal·lació de programari de tercers per a gràfics i maquinari Wi-Fi.</li>
+      </ul>
+      <img src="img-virt/16.png" alt="Selecció predeterminada d'aplicacions a instal·lar">
+      <img src="img-virt/17.png" alt="Activació del programari de tercers per a gràfics i Wi-Fi">
+
+      <h3>2.3. Particionat manual del disc</h3>
+      <p><strong>Aquest pas és irreversible</strong>, per això cal revisar bé
+         el disc de destinació abans de confirmar els canvis. En lloc de
+         l'opció automàtica s'ha triat <strong>Alguna altra cosa</strong> per
+         crear manualment les particions següents sobre el disc de 80 GB:</p>
+      <ul>
+        <li><code>/boot/efi</code> — partició EFI de 512 MB.</li>
+        <li><code>/</code> — partició arrel ext4 de 35 GB.</li>
+        <li><code>/home</code> — partició ext4 de 46 GB per a les dades d'usuari.</li>
+        <li>partició d'intercanvi (<em>swap</em>) de 4383 MB.</li>
+      </ul>
+      <img src="img-virt/18.png" alt="Tipus d'instal·lació: opció Alguna altra cosa per particionar manualment">
+      <img src="img-virt/19.png" alt="Taula de particions amb l'espai lliure del disc de 80 GB">
+      <img src="img-virt/20.png" alt="Creació de la partició EFI de 512 MB muntada a /boot/efi">
+      <img src="img-virt/21.png" alt="Partició EFI creada, afegint la següent partició a l'espai lliure">
+      <img src="img-virt/22.png" alt="Creació de la partició arrel ext4 de 35 GB muntada a /">
+      <img src="img-virt/23.png" alt="Creació de la partició ext4 de 46 GB muntada a /home">
+      <img src="img-virt/24.png" alt="Creació de la partició d'intercanvi (swap) de 4383 MB">
+      <img src="img-virt/25.png" alt="Taula de particions final amb EFI, arrel, home i swap">
+
+      <h3>2.4. Usuari, localització i inici de la instal·lació</h3>
+      <ul>
+        <li>Es crea l'usuari <strong>alumne</strong> amb el nom de la màquina i la contrasenya.</li>
+        <li>Es tria la localització horària (<em>On sou?</em>).</li>
+        <li>S'accepta el resum final i es prem <strong>Comença a instal·lar</strong> per iniciar la còpia d'arxius d'Ubuntu 26.04.1 LTS.</li>
+      </ul>
+      <img src="img-virt/26.png" alt="Creació de l'usuari alumne durant la instal·lació">
+      <img src="img-virt/27.png" alt="Selecció de la zona horària durant la instal·lació">
+      <img src="img-virt/28.png" alt="Resum final Ubuntu 26.04.1 LTS a punt per començar la instal·lació">
+
+      <h3>2.5. Comprovacions finals de la instal·lació</h3>
+      <p>Un cop finalitzada la còpia d'arxius i reiniciat el sistema, cal
+         comprovar que la màquina virtual arrenca correctament i que
+         reconeix tot el maquinari virtual assignat abans de continuar amb
+         el següent apartat. Es revisa aquest resum:</p>
+      <ul>
+        <li>El sistema arrenca sense errors des del disc virtual particionat.</li>
+        <li>La xarxa de la màquina virtual (adaptador NAT) respon correctament als <em>pings</em>.</li>
+        <li><strong>L'usuari creat durant la instal·lació coincideix amb l'enunciat.</strong></li>
+      </ul>
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+    <article class="apartat" id="apartat3">
+      <h2>3. Punts de restauració</h2>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+         ut aliquip ex ea commodo consequat. La configuració de xarxa és
+         <strong>imprescindible</strong> per poder actualitzar el sistema i
+         instal·lar programari nou.</p>
+      <ul>
+        <li>Comprovar l'adreça IP assignada amb <code>ip a</code>.</li>
+        <li>Configurar una IP estàtica si el servei ho requereix.</li>
+        <li>Verificar la connectivitat amb <code>ping</code>.</li>
+      </ul>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+         dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+    <article class="apartat" id="apartat4">
+      <h2>4. Llicències</h2>
+      <p>Tot el programari i tot el contingut publicat a Internet està sotmès
+         a algun tipus de llicència, que determina què pot fer qui el rep
+         (usar-lo, copiar-lo, modificar-lo, distribuir-lo...). A continuació
+         s'expliquen dos dels models de llicència més habituals i quin s'ha
+         triat per a aquest lloc web.</p>
+
+      <h3>4.1. Programari lliure</h3>
+      <p>El <strong>programari lliure</strong> (<em>free software</em>) és
+         aquell que dona a l'usuari quatre llibertats bàsiques: executar-lo
+         amb qualsevol finalitat, estudiar-ne i modificar-ne el codi font,
+         redistribuir-ne còpies i distribuir-ne versions modificades. Perquè
+         això sigui possible, el codi font ha de ser accessible.</p>
+      <ul>
+        <li>Exemples: el nucli <strong>Linux</strong>, <strong>Ubuntu</strong> i la majoria d'eines GNU que s'usen en aquest sprint.</li>
+        <li>Llicències habituals: <strong>GPL</strong>, <strong>MIT</strong>, <strong>Apache 2.0</strong>.</li>
+        <li>No s'ha de confondre amb "gratuït": lliure fa referència a la llibertat d'ús i modificació, no (només) al preu.</li>
+      </ul>
+
+      <h3>4.2. Creative Commons</h3>
+      <p><strong>Creative Commons (CC)</strong> és un conjunt de llicències
+         pensades per a obres de contingut (textos, imatges, música, webs...)
+         en lloc de codi font. Permeten a l'autor triar, de forma senzilla,
+         quins usos permet i quins no. Es construeixen combinant quatre
+         condicions:</p>
+      <ul>
+        <li><strong>BY (Reconeixement)</strong> — cal citar sempre l'autor original.</li>
+        <li><strong>NC (NoComercial)</strong> — no se'n pot fer un ús amb ànim de lucre.</li>
+        <li><strong>SA (CompartirIgual)</strong> — les obres derivades s'han de publicar amb la mateixa llicència.</li>
+        <li><strong>ND (SenseObraDerivada)</strong> — no es permeten modificacions de l'obra original.</li>
+      </ul>
+      <p>Combinant aquestes lletres surten les sis llicències Creative
+         Commons (per exemple <code>CC BY</code>, <code>CC BY-SA</code> o
+         <code>CC BY-NC-SA</code>), a més de la marca <strong>CC0</strong>,
+         que renuncia a tots els drets i deixa l'obra en domini públic.</p>
+
+      <h3>4.3. Llicència triada per a aquesta web</h3>
+      <p>Aquest lloc web es publica amb la llicència
+         <strong>Creative Commons Reconeixement-NoComercial-CompartirIgual
+         (CC BY-NC-SA 4.0)</strong>, tal com s'indica a la pàgina de
+         <a href="../../llicència.html">llicència.txt</a>. Això vol dir que
+         qualsevol persona pot veure i compartir el contingut sempre que:</p>
+      <ul>
+        <li>es reconegui l'autoria de l'autor/a original;</li>
+        <li>no se'n faci un ús comercial;</li>
+        <li>qualsevol adaptació es comparteixi amb aquesta mateixa llicència.</li>
+      </ul>
+      <p>S'ha triat aquesta opció perquè és un treball acadèmic que es vol
+         poder compartir i reutilitzar lliurement entre companys i altres
+         estudiants, però sense que ningú en pugui fer un ús comercial ni
+         tancar-ne les adaptacions amb una llicència més restrictiva.</p>
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+      <article class="apartat" id="apartat5">
+      <h2>5. Gestors d'arrencada</h2>
+      <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero
+         tempore, cum soluta nobis est eligendi optio cumque nihil impedit.
+         Abans de donar per acabat el sprint, revisa aquest resum:</p>
+      <ul>
+        <li>El sistema arrenca sense errors.</li>
+        <li>La xarxa respon correctament als <em>pings</em>.</li>
+        <li><strong>Els usuaris i grups creats coincideixen amb l'enunciat.</strong></li>
+      </ul>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+         fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+         sequi nesciunt.</p>
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+    <article class="apartat" id="apartat6">
+      <h2>6. Xarxa bàsica</h2>
+      <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero
+         tempore, cum soluta nobis est eligendi optio cumque nihil impedit.
+         Abans de donar per acabat el sprint, revisa aquest resum:</p>
+      <ul>
+        <li>El sistema arrenca sense errors.</li>
+        <li>La xarxa respon correctament als <em>pings</em>.</li>
+        <li><strong>Els usuaris i grups creats coincideixen amb l'enunciat.</strong></li>
+      </ul>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+         fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+         sequi nesciunt.</p>
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+    <article class="apartat" id="apartat7">
+      <h2>7. Comandes generals</h2>
+      <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero
+         tempore, cum soluta nobis est eligendi optio cumque nihil impedit.
+         Abans de donar per acabat el sprint, revisa aquest resum:</p>
+      <ul>
+        <li>El sistema arrenca sense errors.</li>
+        <li>La xarxa respon correctament als <em>pings</em>.</li>
+        <li><strong>Els usuaris i grups creats coincideixen amb l'enunciat.</strong></li>
+      </ul>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+         fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+         sequi nesciunt.</p>
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+    <article class="apartat" id="apartat8">
+      <h2>8. Instal·lacions d'aplicacions</h2>
+      <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero
+         tempore, cum soluta nobis est eligendi optio cumque nihil impedit.
+         Abans de donar per acabat el sprint, revisa aquest resum:</p>
+      <ul>
+        <li>El sistema arrenca sense errors.</li>
+        <li>La xarxa respon correctament als <em>pings</em>.</li>
+        <li><strong>Els usuaris i grups creats coincideixen amb l'enunciat.</strong></li>
+      </ul>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+         fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
+         sequi nesciunt.</p>
+      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
+    </article>
+  </section>
+</main>
+
+<footer class="peu">
+  <p class="peu-llicencia">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca" target="_blank" rel="license noopener">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Llicència Creative Commons Reconeixement-NoComercial-CompartirIgual 4.0" width="88" height="31">
+    </a>
+    <span>Contingut sota llicència <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a></span>
+  </p>
+  <p class="autoria">Autor/a: <strong>Nom Cognom1 Cognom2</strong> · Pràctica 0 · Sistemes Operatius (ISOPJ1)</p>
+</footer>
+
+<script src="../../js/windows.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.hero-nav, .hero-titol, .panell, .fitxa-alumne, .bloc-llicencia, .targeta, .consell, .apartat');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      elements.forEach((element) => element.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    elements.forEach((element) => observer.observe(element));
+  });
+</script>
+
+</body>
+</html>
