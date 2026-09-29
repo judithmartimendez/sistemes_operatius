@@ -239,17 +239,87 @@
     </article>
       <article class="apartat" id="apartat5">
       <h2>5. Gestors d'arrencada</h2>
-      <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero
-         tempore, cum soluta nobis est eligendi optio cumque nihil impedit.
-         Abans de donar per acabat el sprint, revisa aquest resum:</p>
+        <p>Un <strong>gestor d'arrencada</strong> és el programa que s'executa
+           després de la BIOS o UEFI i prepara l'inici del sistema operatiu.
+           En aquest ordinador s'utilitza <strong>GRUB 2</strong> (GRand Unified
+           Bootloader), el gestor habitual de moltes distribucions GNU/Linux,
+           inclosa Ubuntu.</p>
+        <p>Quan s'encén l'ordinador, GRUB pot mostrar un menú per triar quin
+           sistema o nucli iniciar. Si només hi ha Ubuntu, normalment inicia
+           l'opció predeterminada després d'un temps d'espera. Això és útil,
+           per exemple, en equips amb més d'un sistema operatiu o per iniciar
+           una versió anterior del nucli si una actualització dona problemes.</p>
+        <p>Les captures següents documenten, en ordre, el procés relacionat
+           amb el gestor d'arrencada. La configuració persistent de GRUB es
+           gestiona mitjançant els seus fitxers de configuració i es regenera
+           amb les eines del sistema; no és recomanable editar directament el
+           fitxer generat <code>/boot/grub/grub.cfg</code>.</p>
+        <h3>5.1. Procés documentat</h3>
+        <p>Les imatges es mostren en l'ordre numerat de la carpeta per seguir
+           la seqüència completa del procediment:</p>
+        <figure>
+          <img src="img-grub/1.png" alt="Captura 1 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 1. Inici del procediment.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/2.png" alt="Captura 2 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 2. Continuació de la configuració.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/3.png" alt="Captura 3 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 3. Pas següent del procediment.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/4.png" alt="Captura 4 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 4. Continuació dels passos.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/5.png" alt="Captura 5 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 5. Configuració del gestor.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/6.png" alt="Captura 6 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 6. Continuació de la configuració del gestor.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/7.png" alt="Captura 7 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 7. Pas intermedi del procés.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/8.png" alt="Captura 8 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 8. Continuació dels passos intermedis.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/9.png" alt="Captura 9 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 9. Ajustos del procés.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/10.png" alt="Captura 10 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 10. Continuació dels ajustos.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/11.png" alt="Captura 11 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 11. Pas final de configuració.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/12.png" alt="Captura 12 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 12. Revisió del resultat.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/13.png" alt="Captura 13 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 13. Comprovació del procés.</figcaption>
+        </figure>
+        <figure>
+          <img src="img-grub/14.png" alt="Captura 14 del procediment sobre el gestor d'arrencada GRUB">
+          <figcaption>Captura 14. Resultat final documentat.</figcaption>
+        </figure>
+        <p>En acabar, convé reiniciar l'equip i comprovar que el menú o l'opció
+           predeterminada de GRUB inicia Ubuntu correctament.</p>
       <ul>
-        <li>El sistema arrenca sense errors.</li>
-        <li>La xarxa respon correctament als <em>pings</em>.</li>
-        <li><strong>Els usuaris i grups creats coincideixen amb l'enunciat.</strong></li>
+          <li>GRUB apareix o inicia el sistema segons la configuració establerta.</li>
+          <li>Ubuntu arrenca sense errors.</li>
+          <li>Si hi ha altres sistemes instal·lats, apareixen com a opcions d'arrencada.</li>
       </ul>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-         fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-         sequi nesciunt.</p>
       <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
     </article>
     <article class="apartat" id="apartat6">
